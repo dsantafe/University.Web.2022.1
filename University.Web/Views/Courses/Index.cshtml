@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Courses</h2>
+
+<div id="rowCourses">
+    <div id="divCourses">
+        <table id="tableCourses" class="table table-bordered" style="width:100%"></table>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        getCourses();
+    });
+
+    $("#create").click(function () {
+        $("#modal .modal-body", this).empty();
+        $("#modal .modal-body").load("/Controller/Action");
+        $("#modal").modal("show");
+    });
+
+    function getCourses() {
+        var $row = $('#rowCourses');
+        $('#divCourses').remove();
+        var $div = $('<div></div>');
+        $div.addClass('table-responsive mb-5');
+        $div.attr({ id: 'divCourses' });
+        $div.addClass('divCourses mb-5');
+        var $table = $("<table></table>");
+        $table.addClass('table table-bordered display text-center');
+        $table.attr({ id: 'tableCourses', width: '100%' });
+        $div.append($table);
+        $row.append($div);
+
+        $.get('/Courses/IndexJson').done(function (data) {
+            $.notify("Load data", "info");
+            console.table(data);
+
+            table = $('#tableCourses').DataTable({
+                data: data,
+                "iDisplayLength": 10,
+                "order": [[0, "desc"]],
+                columns: [
+                    { title: 'ID', data: 'CourseID', className: 'd-none' },
+                    { title: 'Title', data: 'Title' },
+                    { title: 'Credits', data: 'Credits' },
+                    { title: 'Options', data: null }
+                ],
+                columnDefs: [
+                    {
+                        targets: 3,
+                        render: function (data, type, row) {
+                            return '<a href="javascript:void" class="btn btn-warning edit">Edit</a>' +
+                                '<a href="javascript:void" class="btn btn-danger delete">Delete</a>';
+                        }
+                    }
+                ]
+            });
+
+            $('#tableCourses').on('click', 'tbody a.edit', function (e) {
+                let id = $(this).parent().siblings('td')[0].innerText;
+
+                $('#modal .modal-body', this).empty();
+                $('#modal .modal-body').load('/Controller/Action/' + id);
+                $("#modal").modal("show");
+            });
+
+            $('#tableCourses').on('click', 'tbody a.delete', function (data) {
+                let id = $(this).parent().siblings('td')[0].innerText;
+                //delete (id);
+            });
+
+        }).fail(function (data) {
+            console.table(data);
+        });
+    }
+
+</script>
