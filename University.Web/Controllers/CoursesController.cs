@@ -28,5 +28,11 @@ namespace University.Web.Controllers
 
             return Json(coursesDTO, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return PartialView(new CourseDTO());
+        }
     }
 }

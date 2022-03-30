@@ -4,9 +4,33 @@
 
 <h2>Courses</h2>
 
+<!-- Button trigger modal -->
+<button id="create" type="button" class="btn btn-primary">
+    Launch demo modal
+</button>
+<hr />
+
 <div id="rowCourses">
     <div id="divCourses">
         <table id="tableCourses" class="table table-bordered" style="width:100%"></table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalCourses" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Courses</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -16,9 +40,9 @@
     });
 
     $("#create").click(function () {
-        $("#modal .modal-body", this).empty();
-        $("#modal .modal-body").load("/Controller/Action");
-        $("#modal").modal("show");
+        $("#modalCourses .modal-body", this).empty();
+        $("#modalCourses .modal-body").load("/Courses/Create");
+        $("#modalCourses").modal("show");
     });
 
     function getCourses() {
