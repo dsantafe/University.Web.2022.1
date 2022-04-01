@@ -58,6 +58,7 @@
     <Compile Include="DTOs\InstructorDTO.cs" />
     <Compile Include="DTOs\MapperConfig.cs" />
     <Compile Include="DTOs\OfficeAssignmentDTO.cs" />
+    <Compile Include="DTOs\ResponseDTO.cs" />
     <Compile Include="DTOs\StudentDTO.cs" />
     <Compile Include="Models\Course.cs">
       <DependentUpon>UniversityModel.tt</DependentUpon>

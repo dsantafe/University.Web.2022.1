@@ -1,6 +1,6 @@
 ﻿@model University.BL.DTOs.CourseDTO
 
-@using (Html.BeginForm("Create", "Courses", FormMethod.Post, new { id = "formCreateCourse" }))
+@using (Html.BeginForm("Edit", "Courses", FormMethod.Post, new { id = "formEditCourse" }))
 {
     @Html.AntiForgeryToken()
 
@@ -8,13 +8,7 @@
         <h4>CourseDTO</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.CourseID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CourseID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CourseID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.HiddenFor(model => model.CourseID)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -34,7 +28,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input id="create-save" type="button" value="Save" class="btn btn-default" />
+                <input id="edit-save" type="button" value="Save" class="btn btn-primary" />
             </div>
         </div>
     </div>
@@ -42,17 +36,15 @@
 
 <script>
 
-    $("#create-save").click(function () {
-        createCourse();
+    $("#edit-save").click(function () {
+        editCourse();
     })
 
-    function createCourse() {
-        //var courseID = document.getElementById("CourseID");
-        //var courseID = $("#CourseID").val();
+    function editCourse() {
 
-        var formData = $("#formCreateCourse").serialize();
+        var formData = $("#formEditCourse").serialize();
 
-        $.post("/Courses/Create", formData).done(function (data) {
+        $.post("/Courses/Edit", formData).done(function (data) {
             console.table(data);
             //swal("Notification", "The process is successful", "success");
 
