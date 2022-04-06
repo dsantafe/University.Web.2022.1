@@ -5,7 +5,7 @@
 <h2>Courses</h2>
 
 <!-- Button trigger modal -->
-<button id="create" type="button" class="btn btn-success">New</button>
+<button id="create" type="button" class="btn btn-success fas fa-plus"></button>
 <hr />
 
 <div id="rowCourses">
@@ -74,8 +74,8 @@
                     {
                         targets: 3,
                         render: function (data, type, row) {
-                            return '<a href="javascript:void" class="btn btn-warning edit">Edit</a>' +
-                                '<a href="javascript:void" class="btn btn-danger delete">Delete</a>';
+                            return '<a href="javascript:void" class="btn btn-warning edit fas fa-edit"></a>' +
+                                '<a href="javascript:void" class="btn btn-danger delete fas fa-trash"></a>';
                         }
                     }
                 ]

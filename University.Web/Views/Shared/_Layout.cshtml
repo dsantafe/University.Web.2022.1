@@ -19,10 +19,13 @@
     <script src="~/Scripts/Site.js"></script>
 
     <script type="text/javascript" src="~/Scripts/libs/DataTables/datatables.js"></script>
-    <link type="text/css" href="~/Scripts/libs/DataTables/datatables.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/libs/DataTables/datatables.css" />
 
     <script type="text/javascript" src="~/Scripts/libs/SweetAlert/sweetalert.js"></script>
-    <link type="text/css" href="~/Scripts/libs/SweetAlert/sweetalert.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/libs/SweetAlert/sweetalert.css" />
+
+    <script type="text/javascript" src="~/Scripts/libs/Select2/select2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Scripts/libs/Select2/select2.min.css" />
 
     <script type="text/javascript" src="~/Scripts/libs/Notify/notify.js"></script>
 </head>
@@ -41,6 +44,7 @@
                 @Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
                 @Html.ActionLink("About", "About", "Home", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
                 @Html.ActionLink("Contact", "Contact", "Home", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
+                @Html.ActionLink("Courses", "Index", "Courses", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
 
             </div>
         </div>

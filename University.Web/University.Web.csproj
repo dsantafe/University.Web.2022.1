@@ -204,6 +204,8 @@
     <Content Include="Scripts\libs\DataTables\datatables.min.css" />
     <Content Include="Scripts\libs\DataTables\datatables.min.js" />
     <Content Include="Scripts\libs\Notify\notify.js" />
+    <Content Include="Scripts\libs\Select2\select2.min.css" />
+    <Content Include="Scripts\libs\Select2\select2.min.js" />
     <Content Include="Scripts\libs\SweetAlert\sweetalert.css" />
     <Content Include="Scripts\libs\SweetAlert\sweetalert.js" />
     <Content Include="Scripts\libs\SweetAlert\sweetalert.min.js" />
