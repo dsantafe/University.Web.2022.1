@@ -4,6 +4,9 @@
 
 <h2>Courses</h2>
 
+<select id="CourseSelect" class="form-control"></select>
+<hr />
+
 <!-- Button trigger modal -->
 <button id="create" type="button" class="btn btn-success fas fa-plus"></button>
 <hr />
@@ -35,6 +38,7 @@
 <script>
     $(document).ready(function () {
         getCourses();
+        getCoursesList();
     });
 
     $("#create").click(function () {
@@ -111,4 +115,14 @@
         })
     }
 
+    function getCoursesList() {
+        $.get('/Courses/GetCourses', function (data) {
+            $("#CourseSelect").empty();
+            $("#CourseSelect").select2({
+                placeholder: "Seleccione",
+                data: JSON.parse(data)
+            });
+            $("#CourseSelect").val("").trigger("change");
+        });
+    }
 </script>

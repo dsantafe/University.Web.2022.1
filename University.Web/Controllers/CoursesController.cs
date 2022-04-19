@@ -8,6 +8,7 @@ using System.Linq;
 using University.BL.DTOs;
 using System;
 using University.BL.Controls;
+using Newtonsoft.Json;
 
 namespace University.Web.Controllers
 {
@@ -42,7 +43,7 @@ namespace University.Web.Controllers
                 Text = x.Title
             });
 
-            return Json(coursesSelect, JsonRequestBehavior.AllowGet);
+            return Json(JsonConvert.SerializeObject(coursesSelect), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
