@@ -44,7 +44,7 @@
 
         var formData = $("#formEditCourse").serialize();
 
-        $.post("/Courses/Edit", formData).done(function (data) {
+        $.post(urlBase + "/Courses/Edit", formData).done(function (data) {
             console.table(data);            
 
             if (data.IsSuccess) {

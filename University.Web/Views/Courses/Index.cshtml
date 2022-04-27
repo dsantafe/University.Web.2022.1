@@ -43,7 +43,7 @@
 
     $("#create").click(function () {
         $("#modalCourses .modal-body", this).empty();
-        $("#modalCourses .modal-body").load("/Courses/Create");
+        $("#modalCourses .modal-body").load(urlBase + "/Courses/Create");
         $("#modalCourses").modal("show");
     });
 
@@ -60,7 +60,7 @@
         $div.append($table);
         $row.append($div);
 
-        $.get('/Courses/IndexJson').done(function (data) {
+        $.get(urlBase + '/Courses/IndexJson').done(function (data) {
             $.notify("Load data", "info");
             console.table(data);
 
@@ -89,7 +89,7 @@
                 let id = $(this).parent().siblings('td')[0].innerText;
 
                 $('#modalCourses .modal-body', this).empty();
-                $('#modalCourses .modal-body').load('/Courses/Edit/' + id);
+                $('#modalCourses .modal-body').load(urlBase + '/Courses/Edit/' + id);
                 $("#modalCourses").modal("show");
             });
 
@@ -104,19 +104,39 @@
     }
 
     function deleteCourse(id) {
-        $.get("/Courses/Delete/" + id).done(function (data) {
-            if (data.IsSuccess) {
-                getCourses();
-            } else {
-                $.notify(data.Message, "error");
-            }
-        }).fail(function (data) {
-            console.table(data);
-        })
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this register!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel plx!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+
+                    $.get(urlBase + "/Courses/Delete/" + id).done(function (data) {
+                        if (data.IsSuccess) {
+                            getCourses();
+                            swal("Deleted!", "Your register has been deleted.", "success");
+                        } else {
+                            swal("Notification", data.Message, "error");
+                        }
+                    }).fail(function (data) {
+                        swal("Notification", data.Message, "error");
+                    })
+                    
+                } else {
+                    swal("Cancelled", "Your register is safe :)", "error");
+                }
+            });
     }
 
     function getCoursesList() {
-        $.get('/Courses/GetCourses', function (data) {
+        $.get(urlBase + '/Courses/GetCourses', function (data) {
             $("#CourseSelect").empty();
             $("#CourseSelect").select2({
                 placeholder: "Seleccione",

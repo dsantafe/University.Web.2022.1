@@ -9,6 +9,7 @@ using University.BL.DTOs;
 using System;
 using University.BL.Controls;
 using Newtonsoft.Json;
+using System.Configuration;
 
 namespace University.Web.Controllers
 {
@@ -20,6 +21,7 @@ namespace University.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            var foo = ConfigurationManager.AppSettings["UrlBase"].ToString();
             return View();
         }
 
