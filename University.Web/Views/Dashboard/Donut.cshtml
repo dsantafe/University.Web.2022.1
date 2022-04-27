@@ -5,15 +5,28 @@
 
 <h2>Donut</h2>
 
+<select id="report" onchange="getData()" class="form-control">
+    <option value="-1">Seleccione</option>
+    <option value="1">Reporte 1</option>
+    <option value="2">Reporte 2</option>
+</select>
+<hr />
+<input type="button" value="Reporte 1" class="btn btn-primary" onclick="getData(1)" />
+<input type="button" value="Reporte 2" class="btn btn-primary" onclick="getData(2)" />
+
 <div id="graph"></div>
 
 <script>
     $(document).ready(function () {
-        getData();
+        //getData();
     });
 
-    function getData() {
-        $.get(urlBase + '/Dashboard/DonutJson').done(function (data) {
+    function getData(id) {
+        if (id === undefined)
+            id = $("#report").val();            
+
+        $("#graph").empty();
+        $.get(urlBase + '/Dashboard/DonutJson/' + id).done(function (data) {
 
             Morris.Donut({
                 element: 'graph',
