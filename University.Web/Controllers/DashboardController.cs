@@ -1,13 +1,19 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using University.BL.DTOs;
+using University.BL.Models;
+using University.BL.Repositories;
+using University.BL.Repositories.Implements;
 
 namespace University.Web.Controllers
 {
     public class DashboardController : Controller
     {
+        private readonly ICourseRepository courseRepository = new CourseRepository(new UniversityModel());
+
         // GET: Dashboard
         public ActionResult Donut()
         {
@@ -20,7 +26,7 @@ namespace University.Web.Controllers
             switch (id)
             {
                 case 1:
-                    data = Report1();
+                    data = courseRepository.GetReport().ToList();
                     break;
                 case 2:
                     data = Report2();

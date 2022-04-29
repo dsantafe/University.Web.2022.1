@@ -31,6 +31,8 @@ namespace University.Web.Controllers
             var coursesModel = await courseRepository.GetAll();
             var coursesDTO = coursesModel.Select(x => mapper.Map<CourseDTO>(x));
 
+            //var courses = courseRepository.GetCoursesByInstructorId(1);
+
             return Json(coursesDTO, JsonRequestBehavior.AllowGet);
         }
 
