@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -17,6 +18,16 @@ namespace University.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             MapperConfiguration = MapperConfig.MapperConfiguration();
+
+            MvcHandler.DisableMvcResponseHeader = true;
+        }
+
+        protected void Application_PreSendRequestHeaders()
+        {
+            if (HttpContext.Current != null)
+            {
+                HttpContext.Current.Response.Headers.Remove("Server");
+            }
         }
     }
 }
